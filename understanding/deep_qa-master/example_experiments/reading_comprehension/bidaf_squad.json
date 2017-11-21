@@ -1,0 +1,34 @@
+{
+    "model_class": "BidirectionalAttentionFlow",
+    "model_serialization_prefix": "/tmp/models/bidaf",
+    "encoder": {
+        "word": {
+          "type": "cnn",
+          "ngram_filter_sizes": [5],
+          "num_filters": 100
+        }
+    },
+    "seq2seq_encoder": {
+        "default": {
+            "type": "bi_gru",
+            "encoder_params": {
+                "units": 100
+            },
+            "wrapper_params": {}
+        }
+    },
+    // This is not quite the same as Min's paper; we don't have encoder dropout yet.
+    "embedding_dropout": 0.2,
+    "batch_size": 10,
+    "patience": 3,
+    "embedding_dim": {"words": 100, "characters": 8},
+    "num_epochs": 20,
+    "optimizer": {
+      "type": "adadelta",
+      "lr": 0.5
+    },
+    "use_data_generator": true,
+    "use_dynamic_padding": true,
+    "validation_files": ["/net/efs/aristo/dlfa/squad/processed/dev.tsv"],
+    "train_files": ["/net/efs/aristo/dlfa/squad/processed/train.tsv"]
+}

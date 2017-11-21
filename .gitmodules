@@ -1,0 +1,3 @@
+[submodule "lib/tensorflowglove"]
+	path = lib/tensorflowglove
+	url = git@github.com:GradySimon/tensorflow-glove
